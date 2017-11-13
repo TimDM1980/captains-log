@@ -1,4 +1,4 @@
-# The Elm Architecture
+# Elm
 
 ## Links
 * [Elm homepage](http://elm-lang.org/)
