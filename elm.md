@@ -4,14 +4,18 @@
 * [Elm homepage](http://elm-lang.org/)
 
 ## Setup
-* [Install](https://guide.elm-lang.org/install.html)
+* [Install Elm](https://guide.elm-lang.org/install.html)
   * This basically says there's an elm package in node
   * https://www.npmjs.com/package/elm
   * `npm install -g elm`
-* Configure Visual Studio Code
-  * [Instructions](https://github.com/Krzysztof-Cieslak/vscode-elm)
+* [Support for Visual Studio Code](https://github.com/Krzysztof-Cieslak/vscode-elm)
   * Install this extension: https://marketplace.visualstudio.com/items?itemName=sbrink.elm
-  * Click File, Preferences, Settings and add `"elm.makeCommand": ".\\node_modules\\.bin\\elm-make"` to the user settings
+  * Click `File, Auto Save` to autosave your elm files and get immediate error highlighting
+  * About binding the elm.makeCommand
+    * [These instructions](https://github.com/Krzysztof-Cieslak/vscode-elm) tell you to create a `.vscode/settings.json` file in the workspace root and add the following setting: `"elm.makeCommand": ".\\node_modules\\.bin\\elm-make"`
+    * This is only needed when you installed Elm LOCALLY with `npm install --save-dev elm`
+    * If you installed elm GLOBALLY, this is not needed and everything will just work out-of-the-box.
+    * When you cobine the `elm.makeCommand` setting with a global install, you will start seeing the error `The system cannot find the path specified` on the first import statement.
 
 ## Commands
 * `elm-repl` read eval print loop for Elm
@@ -22,6 +26,7 @@
 
 ## Learn
 * [The Elm Architecture tutorial](https://guide.elm-lang.org/architecture/)
+* [Visual Studio Code extension features](https://github.com/Krzysztof-Cieslak/vscode-elm)
 * [Elm Docs](http://elm-lang.org/docs)
 * Tim Schraepen ASF live coding
   * [Twitch](https://go.twitch.tv/asf_livecoding/)
