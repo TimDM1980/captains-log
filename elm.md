@@ -1,7 +1,12 @@
 # Elm
 
 ## Links
-* [Elm homepage](http://elm-lang.org/)
+* [Elm homepage](http://elm-lang.org/) - live examples, docs, community & blog
+* An Introduction To Elm
+  * [Online](https://guide.elm-lang.org/)
+  * [GitBook](https://www.gitbook.com/book/evancz/an-introduction-to-elm/details)
+* [Package Catalog](http://package.elm-lang.org/)
+* [Local application](http://localhost:8000/) started with elm-reactor
 
 ## Installation
 * See https://guide.elm-lang.org/install.html
@@ -48,8 +53,59 @@
     * Install https://github.com/avh4/elm-format but is still experimental
     * Then ALT-Shift-F of via command palette (Ctrl-Shift-P)
 
+## Core Language
+* See https://guide.elm-lang.org/core_language.html
+* string concat: `"hello" ++ "world"`
+* integer division: `9 // 2` evaluates to `4`
+* functions
+  * function definition
+    * `isNegative n = n < 0`
+    * this function takes an argument `n` and checks that it is less than zero
+  * function application
+    * `isNegative 6`
+    * use spaces instead of arguments in parentheses separated with commas
+* `if True then "hello" else "world"`
+  * No "truthiness" on non-boolean things
+* Style
+  * Start the body of a function on the next line
+  * Syntax: next line must start with a whitespace!
+  * REPL: use a backslash to split up lines
+* Lists
+  * `names = [ "Alice", "Bob", "Chuck" ]`
+  * Similar to arrays in javascript
+  * Values must have the same type
+  * Lists library
+    * `List.length names` evaluates to `3`
+    * `List.map myFunction myList` applies `myFunction` to each element of `myList` and returns a new list
+* Tuples
+  * `(123, "a tuple with an int and a string")`
+* Records
+  * Set of key-value pairs, like objects in javascript, but
+    * You cannot ask for a field that does not exist
+    * No field will ever be undefined or null
+    * You cannot create recursive records with a this or self keyword
+  * `point = { x = 3, y = 4 }`
+  * `bill = { name = "Gates", age = 57 }`
+  * Access field using a dot: `point.x`
+  * Use a field like a function
+    * `.x point`
+    * `List.map .name [bill, bill]` evaluates to `["Gates", "Gates"]`
+  * Pattern matching
+    * `under70 {age} = age < 70`
+    * When you throw a record at this function, it will use its age property :-)
+    * `under70 bill` evaluates to `True`
+    * You can use any record, as long as it has an __age__ field that holds a __number__
+    * Using `bill = { age2 = 57 }` gives a COMPILE error :-)
+    * Using `bill = { age = "57" }` gives a COMPILE error :-)
+  * Updating
+    * `{ bill | name = "Nye" }`
+    * __No destructive updates!__ We always return a new record
+
+## The Elm Architecture
+* [Tutorial](https://guide.elm-lang.org/architecture/)
+* Clone the code at https://github.com/evancz/elm-architecture-tutorial/
+
 ## Future Learnings
-* [The Elm Architecture tutorial](https://guide.elm-lang.org/architecture/)
 * [Time Traveling Debugger](http://debug.elm-lang.org/)
 * [Elm Docs](http://elm-lang.org/docs)
 * Tim Schraepen ASF live coding
