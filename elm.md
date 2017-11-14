@@ -9,19 +9,18 @@
 * [Local application](http://localhost:8000/) started with elm-reactor
 
 ## Installation
-* See https://guide.elm-lang.org/install.html
+* Source: https://guide.elm-lang.org/install.html
 * This basically says there's an [elm package in node](https://www.npmjs.com/package/elm)
 * Global install: `npm install -g elm`
-
-## Command Line
-* `elm-repl` read eval print loop for Elm
-* `elm-reactor` like `ng serve`, fires up a server at http://localhost:8000/
-* `elm-make` builds/compiles your project to html or javascript
-  * e.g. `elm-make Main.elm --output=main.html` 
-* `elm-package` install/publish packages from/to the [elm package catalog](http://package.elm-lang.org/)
+* Command Line
+  * `elm-repl` read eval print loop for Elm
+  * `elm-reactor` like `ng serve`, fires up a server at http://localhost:8000/
+  * `elm-make` builds/compiles your project to html or javascript
+    * e.g. `elm-make Main.elm --output=main.html` 
+  * `elm-package` install/publish packages from/to the [elm package catalog](http://package.elm-lang.org/)
 
 ## Visual Studio Code Support
-* See https://github.com/Krzysztof-Cieslak/vscode-elm
+* Source https://github.com/Krzysztof-Cieslak/vscode-elm
 * Install this extension: https://marketplace.visualstudio.com/items?itemName=sbrink.elm
 * About binding the elm.makeCommand
   * [These instructions](https://github.com/Krzysztof-Cieslak/vscode-elm) tell you to create a `.vscode/settings.json` file in the workspace root and add the following setting: `"elm.makeCommand": ".\\node_modules\\.bin\\elm-make"`
@@ -54,7 +53,8 @@
     * Then ALT-Shift-F of via command palette (Ctrl-Shift-P)
 
 ## Core Language
-* See https://guide.elm-lang.org/core_language.html
+* Source https://guide.elm-lang.org/core_language.html
+* Source https://guide.elm-lang.org/types/
 * string concat: `"hello" ++ "world"`
 * integer division: `9 // 2` evaluates to `4`
 * functions
@@ -64,6 +64,30 @@
   * function application
     * `isNegative 6`
     * use spaces instead of arguments in parentheses separated with commas
+  * You can provide the type annotation yourself:
+    * `isNegative : Int -> Bool`
+    * Afterwards you can define the function: `isNegative n = n < 0`
+    * REPL currently doens't support type annotations :-(
+  * the arrow notation `->`
+    * Describes the input and the output of a function
+    * For example `String.length` can be described as `String -> Int`
+    * It __must__ take a String and __must__ return an Int
+    * If you apply this function and you don't give it a string, you get a compile error
+    * what about multiple arrows???
+      * `divide x y = x / y` is a `Float -> Float -> Float` function
+      * The _easy_ way to grasp this, is to think that all the arguments are separated by arrows, and whatever is last is the result of the function
+      * But ist's just __partial application__:
+        * `divide x y = x / y`
+        * `divide x = \y -> x / y`
+        * `divide = \x -> (\y -> x / y)`
+      * You can use functions like this as well, you don't have to give all the arguments at once :-)
+        * `divide 128` evaluates to a `Float -> Float` function, which takes 1 argument and returns a Float
+        * you can use the forward application operator `|>` to write `divide 128 2` as `2 |> divide 128`
+  * Anonymous functions
+    * Starts with a backslash, like `\n = n + 2`
+    * To use it, wrap it in parentheses: `(\n = n + 2) 10` evaluates to `12`
+    * You can even name them: `plusTwo = \n = n + 2`
+    * If you throw away the backslash, you end up with the regular function definitions: `isNegative n = n < 0`
 * `if True then "hello" else "world"`
   * No "truthiness" on non-boolean things
 * Style
@@ -74,9 +98,16 @@
   * `names = [ "Alice", "Bob", "Chuck" ]`
   * Similar to arrays in javascript
   * Values must have the same type
+    * However, `[]` evaluates to a List with a type that is not specified yet
+    * Since Elm embraces immutability, this plays out nicely:
+      * `emptyList = []` is an empty list with no defined type
+      * `listOfInts = 1 :: emptyList` gives a new list of ints
+      * `"a" :: emptyList` gives a new list of strings
+      * `"a" :: listOfInts` gives a compile error :-)
   * Lists library
     * `List.length names` evaluates to `3`
     * `List.map myFunction myList` applies `myFunction` to each element of `myList` and returns a new list
+    * `List.::` add an element to the front of a list. Use it like this: `"Tim" :: names`
 * Tuples
   * `(123, "a tuple with an int and a string")`
 * Records
