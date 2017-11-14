@@ -88,6 +88,7 @@
     * To use it, wrap it in parentheses: `(\n = n + 2) 10` evaluates to `12`
     * You can even name them: `plusTwo = \n = n + 2`
     * If you throw away the backslash, you end up with the regular function definitions: `isNegative n = n < 0`
+    * Use them with the List library: `List.filter (\x -> x > 0) listOfInts`
 * `if True then "hello" else "world"`
   * No "truthiness" on non-boolean things
 * Style
@@ -96,6 +97,7 @@
   * REPL: use a backslash to split up lines
 * Lists
   * `names = [ "Alice", "Bob", "Chuck" ]`
+  * Type annotation for lists: `names : List String`
   * Similar to arrays in javascript
   * Values must have the same type
     * However, `[]` evaluates to a List with a type that is not specified yet
@@ -131,6 +133,35 @@
   * Updating
     * `{ bill | name = "Nye" }`
     * __No destructive updates!__ We always return a new record
+* Type alias
+  * Looks like Class definitions in Java
+  * `type alias User = { name : String, bio : String, pic : String }`
+  * You can use it for function in/output: `hasBio : User -> Bool`
+  * Creating a type alias generates a record constructor: `User "Tom" "Friendly Carpenter" "http://example.com/tom.jpg"`
+* Union types
+  * Also called _tagged unions_
+  * Looks like enums in Java
+  * `type Visibility = All | Active | Completed`
+  * Use them in case expressions: `case visibilityParam of All -> ...`
+  * All those _values_ themselves are functions
+    * You can see this more clearly here: `type User = Anonymous | Named String`
+    * `Named` is a function that takes a String and returns a User, or `String -> User`
+    * You can _instantiate_ it like so: `Named "Johnny"`
+    * You can even access the String field: `case user of Named name -> "users/" ++ name ++ ".png"`
+* Generic structures
+  * Linked list: `type IntList = Empty | Node Int IntList`
+  * Now you have recursion: `Node 64 (Node 128 Empty)`
+  * You can think of recursive functions:
+    ```
+    sum numbers =
+     case numbers of
+      Empty ->
+       0
+      Node n remainingNumbers ->
+       n + sum remainingNumbers
+    ```
+  * A generic linked list: `type List a = Empty | Node a (List a)`
+  * A generic binary tree: `type Tree a = Empty | Node a (Tree a) (Tree a)`
 
 ## The Elm Architecture
 * [Tutorial](https://guide.elm-lang.org/architecture/)
