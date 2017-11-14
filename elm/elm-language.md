@@ -1,8 +1,9 @@
 # Elm Language
 
 ## Sources
-* Source https://guide.elm-lang.org/core_language.html
-* Source https://guide.elm-lang.org/types/
+* https://guide.elm-lang.org/core_language.html
+* https://guide.elm-lang.org/types/
+* https://guide.elm-lang.org/error_handling/
 
 ## Basics
 * String concat: `"hello" ++ "world"`
@@ -97,6 +98,8 @@
   * Looks like enums in Java
   * `type Visibility = All | Active | Completed`
   * Use them in case expressions: `case visibilityParam of All -> ...`
+    * Important: Elm forces you to deal with all cases!
+    * Otherwise, you get a compile error 
   * All those _values_ themselves are functions
     * You can see this more clearly here: `type User = Anonymous | Named String`
     * `Named` is a function that takes a String and returns a User, or `String -> User`
@@ -116,3 +119,24 @@
     ```
   * A generic linked list: `type List a = Empty | Node a (List a)`
   * A generic binary tree: `type Tree a = Empty | Node a (Tree a) (Tree a)`
+
+## Error Handling
+* Maybe
+  * fixes null
+  * `type Maybe a = Nothing | Just a`
+  * A variable that can be _null_: `age : Maybe Int`
+  * `age = Nothing` or `age = Just 24`
+  * In case excpressions, we __have__ to deal with `Nothing`:
+  ```
+  canBuyAlcohol age =
+    case age of
+      Nothing ->
+        False
+      Just age ->
+        age >= 21
+  ```
+  * List.filterMap drops items if you map function returns Nothing
+* Result
+  * fixes exceptions
+* Task
+  * fixes async exceptions
