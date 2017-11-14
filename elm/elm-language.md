@@ -138,5 +138,17 @@
   * List.filterMap drops items if you map function returns Nothing
 * Result
   * fixes exceptions
+  * `type Result error value = Err error | Ok value`
+  * `String.toInt : String -> Result String Int`
+  * Parsing a String this way results in a Result which is either an Ok with an Int value or an Err with an error String
+  * Again we can use case expressions to handle both cases:
+  ```
+  case String.toInt userInput of
+    Err msg ->
+      span [class "error"] [text msg]
+    Ok age -> 
+      ...
+  ```
 * Task
   * fixes async exceptions
+  * Docs are not yet up-to-date...
