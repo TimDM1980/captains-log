@@ -7,6 +7,7 @@
   * [GitBook](https://www.gitbook.com/book/evancz/an-introduction-to-elm/details)
 * [Package Catalog](http://package.elm-lang.org/)
 * [Local application](http://localhost:8000/) started with elm-reactor
+* [Time Traveling Debugger](http://debug.elm-lang.org/)
 
 ## Installation
 * Source: https://guide.elm-lang.org/install.html
@@ -54,8 +55,7 @@
     * Then ALT-Shift-F of via command palette (Ctrl-Shift-P)
 
 ## Future Learnings
-* [Time Traveling Debugger](http://debug.elm-lang.org/)
-* [Elm Docs](http://elm-lang.org/docs)
 * Tim Schraepen ASF live coding
   * [Twitch](https://go.twitch.tv/asf_livecoding/)
   * [Youtube channel](https://www.youtube.com/channel/UC-0Zos25VCU6h6bDiv7bh9w)
+* [Elm Docs](http://elm-lang.org/docs)
