@@ -16,7 +16,8 @@
   * `elm-repl` read eval print loop for Elm
   * `elm-reactor` like `ng serve`, fires up a server at http://localhost:8000/
   * `elm-make` builds/compiles your project to html or javascript
-    * e.g. `elm-make Main.elm --output=main.html` 
+    * e.g. `elm-make Main.elm --output=main.html`
+    * e.g. `elm-make Main.elm --output=main.js`
   * `elm-package` install/publish packages from/to the [elm package catalog](http://package.elm-lang.org/)
 
 ## Visual Studio Code Support
@@ -51,10 +52,6 @@
   * Formatting
     * Install https://github.com/avh4/elm-format but is still experimental
     * Then ALT-Shift-F of via command palette (Ctrl-Shift-P)
-
-## The Elm Architecture
-* [Tutorial](https://guide.elm-lang.org/architecture/)
-* Clone the code at https://github.com/evancz/elm-architecture-tutorial/
 
 ## Future Learnings
 * [Time Traveling Debugger](http://debug.elm-lang.org/)
